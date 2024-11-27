@@ -8,6 +8,10 @@
 </head>
 
 <body>
+
+  <!-- source : https://vueschool.io/lessons/dynamic-css-classes-with-vue-3 -->
+
+  <!-- La VIEW en HTML (et données dynamique liées au MODEL) -->
   <div id="shopping-list">
     <div class="header">
       <h1>{{ header || 'Welcome' }}</h1>
@@ -42,7 +46,13 @@
       </li>
     </ul>
   </div>
+
+
+  <!-- Ici on charge Vue.js via UNPKG.com Content Delivery Network (CDN) -->
   <script src="https://unpkg.com/vue@3"></script>
+
+
+  <!-- Le MODEL en JS -->
   <script>
     const shoppingListApp = Vue.createApp({
       data() {

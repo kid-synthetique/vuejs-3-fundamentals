@@ -1,9 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900");
+
+
+/* Palette de couleurs : https://coolors.co/palette/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d */
+
+
+:root{
+
+  --deep-turquoise: #1a535c;
+  --turquoise: #4ecdc4;
+  --light-lime: #f7fff7;
+  --fun-orange: #ff6b6b;
+  --sunny-yellow: #ffe66d;
+  
+}
 body {
-  background: #eff8ff;
+  background: linear-gradient(var(--fun-orange), var(--sunny-yellow));
   height: 100vh;
   width: 100vw;
-  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Lato", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,64 +31,80 @@ body {
   padding-right: 10px;
 }
 
-#shopping-list {
-  background: #fff;
+#movies-collection {
+  background: var(--light-lime);
   padding: 2rem;
   margin: 1rem;
-  border-radius: 3px;
+  border-radius: 6px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
   width: 95%;
   max-width: 900px;
 }
 
 h1 {
-  color: #3d4852;
+  color: var(--deep-turquoise); /* #3d4852; */
+  margin: 0;
+}
+h2 {
+  color: var(--deep-turquoise);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.year {
+  font-size: 1.2em;
 }
+
+
+
 
 a {
-  color: #6cb2eb;
-  font-size: 1.25rem;
+  color: var(--turquoise);
+  color: hsl(176, 56, 55); /* c'est le turquoise en valeur hsl) */
+  font-size: 1.1rem;
   transition: all 0.1s ease-in;
   margin-top: 0.5rem;
   display: block;
 }
 
 a:hover {
-  color: #3490dc;
+  color: hsl(176, 56, 40);
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 17px;
+  list-style-type: circle;
 }
 
 li,
 p {
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   line-height: 1.75;
   letter-spacing: 0.5px;
-  color: #3d4852;
-  font-size: 1.25rem;
+  color: var(--deep-turquoise);
+  color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.1s ease-in;
 }
 
+
 li:hover {
-  color: #22292f;
+  color: hsl(188, 56%,35%); 
 }
 
 li input {
   margin: 0 0.5rem 0;
 }
 
-#shopping-list > input,
-#shopping-list > select {
+#movies-collection > input,
+#movies-collection > select {
   width: 100%;
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #f1f5f8;
-  color: #606f7b;
+  color: var(--deep-turquoise);
+  color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
   font-size: 1rem;
@@ -82,11 +112,24 @@ li input {
   margin: 0.5rem 0;
 }
 
+
+
 .add-item-form,
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  height: 0px;
+  margin: 30px 0 30px 0;
 }
 
 .add-item-form input {
@@ -94,7 +137,8 @@ li input {
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #f1f5f8;
-  color: #606f7b;
+  color: var(--deep-turquoise);
+  color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
   font-size: 1rem;
@@ -113,7 +157,7 @@ li input {
   letter-spacing: 0.5px;
   transition: all 0.1s ease-in;
 }
-
+/*
 .btn[disabled] {
   background: #8795a1;
 }
@@ -121,40 +165,77 @@ li input {
 .btn[disabled]:hover {
   background: #606f7b;
 }
+*/
+
+.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 
 .btn-primary {
-  background: #6cb2eb;
+  background: var(--turquoise);
+  background: hsl(176, 56, 55); /* c'est le turquoise en valeur hsl) */
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #3490dc;
+  background:  hsl(176, 56%, 45%);
 }
 
 .btn-cancel {
-  background: #ef5753;
+  background: var(--fun-orange); /*#e87ca5;*/
+  background: hsl(0,100,71); /* c'est le fun-orange en valeur hsl) */
   color: #fff;
 }
 
 .btn-cancel:hover {
-  background: #e3342f;
+  background: hsl(0, 100%, 60%);
   color: #fff;
 }
 
 .strikeout {
   text-decoration: line-through;
-  color: #b8c2cc;
+  color: #a7ccc9;
 }
 
 .strikeout:hover {
-  color: #8795a1;
+  color: #8dadab;
 }
 
-.priority {
-  color: #de751f;
+.favorite {
+  color: var(--fun-orange);
 }
-input[type="checkbox"]{
+
+.favorite:hover,
+.strikeout.favorite:hover
+ {
+  color:  hsl(0, 100%, 60%);
+}
+
+
+input[type="checkbox"] {
   display: inline !important;
   box-shadow: none;
-  width: auto;
+  width: 32px;
+  height: 32px;
+  margin: 0 5px 0 0;
 }
+
+label.label-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.usa {
+  background-image: url("https://assets.codepen.io/9367036/usa.svg");
+}
+
+.qc {
+  background-image: url("https://assets.codepen.io/9367036/qc.svg");
+}
+
+.korea{
+  background-image: url("https://assets.codepen.io/9367036/korea.svg");
+}
+

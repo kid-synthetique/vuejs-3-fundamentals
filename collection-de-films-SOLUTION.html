@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SOLUTION - Collection de films</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+      <!-- inspiration : https://vueschool.io/lessons/dynamic-css-classes-with-vue-3 -->
+
+    <!-- La VIEW en HTML (et données dynamique liées au MODEL) -->
+    <div id="movies-collection">
+        <div class="header">
+            <h1>{{ header || 'Bienvenue' }}</h1>
+            <button v-if="editing" @click="doEdit(false)" class="btn btn-cancel">Annuler</button>
+            <button v-else @click="doEdit(true)" class="btn btn-primary">Ajouter un film</button>
+        </div>
+
+        <div v-if="editing" class="add-item-form">
+            <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Titre du film (année)">
+            <input type="text" v-model="newItemYear" placeholder="Année de sortie">
+            <label class="label-checkbox">
+                <input type="checkbox" v-model="newItemFavorite">
+                Film préféré?
+            </label>
+
+            <button 
+                @click="saveItem" 
+                class="btn btn-primary">
+                Sauvegarder
+            </button>
+        </div>
+        <p v-if="items.length === 0">Excellent! Tu as maintenant visionné tous tes films!!</p>
+        <ul>
+            <li 
+                v-for="item in orberedByTitleItems"
+                @click="toggleViewed(item)" 
+                :key="item.id" 
+                class="static-class"
+                :class="{strikeout: item.viewed, favorite: item.favorite}">
+
+                {{item.label}} ({{item.year}})
+
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- Ici on charge Vue.js via UNPKG.com Content Delivery Network (CDN) -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+
+    <!-- Le MODEL en JS -->
+    <script>
+        const movieCollectionApp = Vue.createApp({
+            data() {
+                return {
+                    header: 'Appli d\'une collection de films',
+                    editing: false,
+                    newItem: '',
+                    newItemYear: 0,
+                    newItemFavorite: false,
+                
+                    items: [
+                        { id: 1, label: 'Dune: Part Two', viewed: true, year: 2024, favorite: false },
+                        { id: 2, label: 'The Substance', viewed: true, year: 2024, favorite: false },
+                        { id: 3, label: 'Don\'t Look Up', viewed: false, year: 2021, favorite: true },
+                        { id: 4, label: 'Le plongeur', viewed: false, year: 2023, favorite: false },
+                        { id: 5, label: 'Simple comme Sylvain', viewed: false, year: 2023, favorite: false },
+                        { id: 6, label: 'Le successeur', viewed: false, year: 2023, favorite: true },
+                        { id: 7, label: 'Ligne de fuite', viewed: false, year: 2022, favorite: false },
+                
+                    ]
+                }
+            },
+            computed: {
+                orberedByTitleItems() {
+                   return [...this.items].sort((a, b) =>  {
+                        return a.label.localeCompare(b.label);
+                    });
+                }
+            },
+            methods: {
+                saveItem() {
+                    this.items.push({
+                        id: this.items.length + 1,
+                        label: this.newItem,
+                        year: this.newItemYear,
+                        favorite: this.newItemFavorite
+                    })
+                    this.newItem = ""
+                    this.newItemFavorite = false
+                },
+                doEdit(editing) {
+                    this.editing = editing
+                    this.newItem = ""
+                    this.newItemFavorite = false
+                },
+                toggleViewed(item) {
+                    item.viewed = !item.viewed
+                }
+            }
+        }).mount('#movies-collection')
+    </script>
+</body>
+
+</html>
