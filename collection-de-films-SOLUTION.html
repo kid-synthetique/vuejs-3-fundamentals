@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SOLUTION - Collection de films</title>
+    <title>COMPLET - Collection de films</title>
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -20,7 +20,7 @@
 
         <div v-if="editing" class="add-item-form">
             <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Titre du film (année)">
-            <input type="text" v-model="newItemYear" placeholder="Année de sortie">
+            <input type="text" v-model="newItemYear" placeholder="Année de sortie" class="shorter">
             <label class="label-checkbox">
                 <input type="checkbox" v-model="newItemFavorite">
                 Film préféré?
@@ -39,7 +39,7 @@
                 @click="toggleViewed(item)" 
                 :key="item.id" 
                 class="static-class"
-                :class="{strikeout: item.viewed, favorite: item.favorite}">
+                :class="{strikeout: item.viewed, favorite: item.favorite, flag: item.country != ''}, item.country">
 
                 {{item.label}} ({{item.year}})
 
@@ -60,17 +60,21 @@
                     header: 'Appli d\'une collection de films',
                     editing: false,
                     newItem: '',
-                    newItemYear: 0,
+                    newItemYear: '',
+                    newItemCountry: '',
                     newItemFavorite: false,
                 
                     items: [
-                        { id: 1, label: 'Dune: Part Two', viewed: true, year: 2024, favorite: false },
-                        { id: 2, label: 'The Substance', viewed: true, year: 2024, favorite: false },
-                        { id: 3, label: 'Don\'t Look Up', viewed: false, year: 2021, favorite: true },
-                        { id: 4, label: 'Le plongeur', viewed: false, year: 2023, favorite: false },
-                        { id: 5, label: 'Simple comme Sylvain', viewed: false, year: 2023, favorite: false },
-                        { id: 6, label: 'Le successeur', viewed: false, year: 2023, favorite: true },
-                        { id: 7, label: 'Ligne de fuite', viewed: false, year: 2022, favorite: false },
+                       
+                        { id: 1, label: 'Dune: Part Two', viewed: true, year: 2024, country: 'usa', favorite: false },
+                        { id: 2, label: 'The Substance', viewed: true, year: 2024, country: 'usa', favorite: false },
+                        { id: 3, label: 'Don\'t Look Up', viewed: false, year: 2021, country: 'usa', favorite: true },
+                        { id: 4, label: 'Le plongeur', viewed: false, year: 2023, country: 'qc', favorite: false },
+                        { id: 5, label: 'Simple comme Sylvain', viewed: false, year: 2023, country: 'qc', favorite: false },
+                        { id: 6, label: 'Le successeur', viewed: false, year: 2023, country: 'qc', favorite: true },
+                        { id: 7, label: 'Ligne de fuite', viewed: false, year: 2022, country: 'qc', favorite: false },
+                        { id: 8, label: 'Parasite', viewed: true, year: 2019, country: 'korea', favorite: false },
+                        { id: 9, label: 'Everything, Everywhere All at Once', viewed: false, year: 2023, country: '', favorite: true },
                 
                     ]
                 }
@@ -88,6 +92,7 @@
                         id: this.items.length + 1,
                         label: this.newItem,
                         year: this.newItemYear,
+                        country: this.newItemCountry,
                         favorite: this.newItemFavorite
                     })
                     this.newItem = ""

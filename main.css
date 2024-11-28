@@ -1,17 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900");
 
-
 /* Palette de couleurs : https://coolors.co/palette/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d */
 
-
-:root{
-
+:root {
   --deep-turquoise: #1a535c;
   --turquoise: #4ecdc4;
   --light-lime: #f7fff7;
   --fun-orange: #ff6b6b;
   --sunny-yellow: #ffe66d;
-  
 }
 body {
   background: linear-gradient(var(--fun-orange), var(--sunny-yellow));
@@ -53,9 +49,6 @@ h2 {
   font-size: 1.2em;
 }
 
-
-
-
 a {
   color: var(--turquoise);
   color: hsl(176, 56, 55); /* c'est le turquoise en valeur hsl) */
@@ -67,34 +60,6 @@ a {
 
 a:hover {
   color: hsl(176, 56, 40);
-}
-
-ul {
-  margin: 0;
-  padding: 0 0 0 17px;
-  list-style-type: circle;
-}
-
-li,
-p {
-  /*display: flex;*/
-  align-items: center;
-  line-height: 1.75;
-  letter-spacing: 0.5px;
-  color: var(--deep-turquoise);
-  color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.1s ease-in;
-}
-
-
-li:hover {
-  color: hsl(188, 56%,35%); 
-}
-
-li input {
-  margin: 0 0.5rem 0;
 }
 
 #movies-collection > input,
@@ -111,8 +76,6 @@ li input {
   letter-spacing: 0.5px;
   margin: 0.5rem 0;
 }
-
-
 
 .add-item-form,
 .header {
@@ -141,9 +104,12 @@ hr {
   color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 0.5px;
-  margin: 0.5rem 0;
+  margin: 0.5rem;
+}
+input.shorter {
+  flex-shrink: 3;
 }
 
 .btn {
@@ -179,12 +145,12 @@ hr {
 }
 
 .btn-primary:hover {
-  background:  hsl(176, 56%, 45%);
+  background: hsl(176, 56%, 45%);
 }
 
 .btn-cancel {
   background: var(--fun-orange); /*#e87ca5;*/
-  background: hsl(0,100,71); /* c'est le fun-orange en valeur hsl) */
+  background: hsl(0, 100, 71); /* c'est le fun-orange en valeur hsl) */
   color: #fff;
 }
 
@@ -202,16 +168,23 @@ hr {
   color: #8dadab;
 }
 
-.favorite {
+.favorite,
+.selectedYear {
   color: var(--fun-orange);
 }
 
 .favorite:hover,
-.strikeout.favorite:hover
- {
-  color:  hsl(0, 100%, 60%);
+.selectedYear:hover {
+  color: hsl(0, 100%, 65%);
+}
+.strikeout.favorite {
+  color: var(--sunny-yellow);
+  color: hsl(50, 100%, 63%); /* c'est le deep sunny-yellow en valeur hsl) */
 }
 
+.strikeout.favorite:hover {
+  color: hsl(50, 100%, 50%);
+}
 
 input[type="checkbox"] {
   display: inline !important;
@@ -225,17 +198,68 @@ label.label-checkbox {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0.5rem;
+  min-width: 130px;
 }
 
-.usa {
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li,
+p {
+  /*display: flex;*/
+  align-items: center;
+  line-height: 1.75;
+  letter-spacing: 0.5px;
+  color: var(--deep-turquoise);
+  color: hsl(188, 56, 23); /* c'est le deep turquoise en valeur hsl) */
+  font-size: 1.5vmin;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+li:hover {
+  color: hsl(188, 56%, 35%);
+}
+
+li input {
+  margin: 0 0.5rem 0;
+}
+
+li.static-class {
+  padding-left: 24px;
+  position: relative;
+}
+
+li.static-class::after {
+  content: "";
+  position: absolute;
+  width: 1.5vmin;
+  height: 1.5vmin;
+  top: 50%;
+  left: -0.05vmin;
+  transform: translateY(-10px);
+  background: var(--sunny-yellow);
+  border-radius: 100%;
+}
+
+li.flag::after {
+  background-size: 1vmin auto;
+  background-repeat: no-repeat;
+  background-position: 0.28vmin 50%;
+}
+
+li.usa::after {
   background-image: url("https://assets.codepen.io/9367036/usa.svg");
 }
 
-.qc {
+li.qc::after {
   background-image: url("https://assets.codepen.io/9367036/qc.svg");
 }
 
-.korea{
+li.korea::after {
   background-image: url("https://assets.codepen.io/9367036/korea.svg");
 }
-
